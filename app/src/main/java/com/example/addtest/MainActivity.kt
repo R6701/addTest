@@ -6,8 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
-
-//
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +17,14 @@ class MainActivity : AppCompatActivity() {
         val resultView = findViewById<TextView>(R.id.resultView)
 
         addButton.setOnClickListener {
-            val sum = number1.text.toString().toDouble() + number2.text.toString().toDouble()
-            resultView.text = "Result: $sum"
+            val num1 = number1.text.toString().toDoubleOrNull()
+            val num2 = number2.text.toString().toDoubleOrNull()
+            if (num1 != null && num2 != null) {
+                val sum = num1 + num2
+                resultView.text = "Result: $sum"
+            } else {
+                resultView.text = "Please enter valid numbers"
+            }
         }
     }
 }
